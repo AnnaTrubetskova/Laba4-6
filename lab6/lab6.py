@@ -1,8 +1,18 @@
-from colorsys import yiq_to_rgb
-from re import X
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
+# Author: Anna Trubetskova.
+# Group: ISTbd-11.
+# Option: 14.
+# B   C
+# D   E
+# Task: Формируется матрица F следующим образом: скопировать в нее А и 
+# если в В количество чисел, меньших К в нечетных столбцах больше, чем 
+# сумма чисел в четных строках, то поменять местами С и Е симметрично, 
+# иначе В и Е поменять местами несимметрично. При этом матрица А не 
+# меняется. После чего если определитель матрицы А больше суммы 
+# диагональных элементов матрицы F, то вычисляется выражение: 
+# A-1*AT – K * F, иначе вычисляется выражение (A-1 +G-FТ)*K,
+# где G-нижняя треугольная матрица, полученная из А.
+# Выводятся по мере формирования А,
+# F и все матричные операции последовательно.
 from math import floor, ceil
 import numpy as np
 
@@ -50,6 +60,7 @@ class Matrix:
             for j in range(0, ceil(self.n / 2)):
                 temp = self.matrixF[i][j]
                 self.matrixF[i][j] = self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)]
+                self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)] = temp
 
     def run(self):
         if (self.__checkCondition1()):
@@ -78,14 +89,11 @@ class Matrix:
         print('Result:')
         print(self.result)
         print('=========')
-
-try:        
-    K = int(input('Введите K: '))
-    N = int(input('Введите N: '))
-    matrix = Matrix(K, N)
-    matrix.run()
-except:
-    pass
+        
+K = int(input('Введите K: '))
+N = int(input('Введите N: '))
+matrix = Matrix(K, N)
+matrix.run()
 
 print('==========LAB 6==========')
 fig, ax = plt.subplots()

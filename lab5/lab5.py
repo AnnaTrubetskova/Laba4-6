@@ -60,6 +60,7 @@ class Matrix:
             for j in range(0, ceil(self.n / 2)):
                 temp = self.matrixF[i][j]
                 self.matrixF[i][j] = self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)]
+                self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)] = temp
 
     def run(self):
         if (self.__checkCondition1()):
