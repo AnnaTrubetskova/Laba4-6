@@ -61,6 +61,7 @@ class Matrix:
             for j in range(0, ceil(self.n / 2)):
                 temp = self.matrixF[i][j]
                 self.matrixF[i][j] = self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)]
+                self.matrixF[i + floor(self.n / 2)][j + floor(self.n / 2)] = temp
 
     def __transposeMatrix(self, matrix):
         return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
